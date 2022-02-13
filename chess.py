@@ -1,6 +1,6 @@
 import pygame as pg
 import sys
-from piece import Piece
+from player import Player
 
 pg.init()
 
@@ -34,9 +34,8 @@ def get_grid_position(grid_pos):
 
     return [(x*grid_pos[0])+board_border, (y*grid_pos[1])+board_border]
 
-test_bishop = Piece("Bishop", get_grid_position([8, -5]), pg.transform.scale(pg.image.load('src/b_bishop_1x.png'), square_size))
-
-
+player_one = Player(1)
+player_two = Player(2)
     
 
 def draw_board():
@@ -70,9 +69,20 @@ while True:
     
     text = font.render(str(mouse_pos[0]) + ":" + str(mouse_pos[1]), True, white, (0,0,0))
     
+    
+    #Rita bordet
     draw_board()
-    screen.blit(test_bishop.surface, test_bishop.grid_position)
-    screen.blit(text, (0,0))
+
+
+    #Rita alla pjäser
+    for i in range(16):
+        screen.blit(player_one.pawns[i].surface,get_grid_position(player_one.get_grid_pos(i)))
+    for i in range(16):
+        screen.blit(player_two.pawns[i].surface,get_grid_position(player_two.get_grid_pos(i)))
+    
+    
+    #Debug för att se vilken ruta som är vilken, gridmässigt
+    #screen.blit(text, (0,0))
     pg.display.update()
 
 

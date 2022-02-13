@@ -1,5 +1,6 @@
 class Piece():
 
+    alive = True
     #Grunden till alla pjäser. 
     #Alla pjäser har namn, x och y position och levande eller död.
     def __init__(self, name, grid_position, surface):
@@ -9,3 +10,4 @@ class Piece():
 
     def test(self):
         print("This works!")
+    
