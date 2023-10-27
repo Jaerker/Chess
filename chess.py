@@ -7,10 +7,10 @@ pg.init()
 SIZE = width, height = 640,640
 
 #Basic colors
-white = (255, 255, 255)
-green = (0, 255, 0)
-blue = (0, 0, 128)
-
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 128)
+BLACK = (0,0,0)
 
 
 grid_size = 8
@@ -57,26 +57,17 @@ font = pg.font.Font('src/Oswald-VariableFont_wght.ttf', 32)
 # create a text surface object,
 # on which text is drawn on it.
 
-
+#Rita bordet
+draw_board()
 
 while True:
     for event in pg.event.get():
         if event.type == pg.QUIT: sys.exit()
-    
-    mouse_pos = list(pg.mouse.get_pos())
-
-    mouse_pos[0] = max(-1, min(8, round( ((mouse_pos[0] +5 ) /x)-3 )))
-    mouse_pos[1] = max(-1, min(8, round( ((mouse_pos[1] +5) /y)-3 )))
-
-    
-    text = font.render(str(mouse_pos[0]) + ":" + str(mouse_pos[1]), True, white, (0,0,0))
-    
-    
-    #Rita bordet
-    draw_board()
 
 
-    #Rita alla pjäser
+    
+    #Draw section
+    pg.draw.rect(screen, WHITE, pg.Rect(0,0,width,50))
     for i in range(16):
         screen.blit(player_one.pawns[i].surface, get_grid_position(player_one.get_grid_pos(i)))
     for i in range(16):
@@ -84,11 +75,22 @@ while True:
     
 
 
-    #Debug för att se vilken ruta som är vilken, gridmässigt
-    
-    screen.blit(text, (0,0))
-    pg.display.update()
+    mouse_pos = list(pg.mouse.get_pos())
 
+    mouse_pos[0] = max(-1, min(8, round( ((mouse_pos[0] +5 ) /x)-3 )))
+    mouse_pos[1] = max(-1, min(8, round( ((mouse_pos[1] +5) /y)-3 )))
+    
+    cursor_pos_text = font.render(str(mouse_pos[0]) + ":" + str(mouse_pos[1]), True, BLACK)
+   # clicked_pawn_text = font.render()
+
+    text_rect = cursor_pos_text.get_rect()
+    
+    #Rita alla pjäser
+
+
+    #Debug för att se vilken ruta som är vilken, gridmässigt
+    screen.blit(cursor_pos_text, (40-(text_rect.width/2),0))
+    pg.display.update()
 
 
 
