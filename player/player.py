@@ -1,5 +1,5 @@
 
-from piece import Piece
+from board import piece
 import pygame as pg
 
 class Player():
@@ -38,19 +38,19 @@ class Player():
 
 
         for i in range(8):
-            self.pawns.append(Piece("Bonde", [i,self.pawn_position], pg.transform.scale(pg.image.load(self.pawn_url), self.square_size)))
+            self.pawns.append(piece.Piece("Bonde", [i,self.pawn_position], pg.transform.scale(pg.image.load(self.pawn_url), self.square_size)))
         for i in range(2):
-            self.pawns.append(Piece("Vakttorn", [i*7,self.rest_position], pg.transform.scale(pg.image.load(self.rook_url), self.square_size)))
+            self.pawns.append(piece.Piece("Vakttorn", [i*7,self.rest_position], pg.transform.scale(pg.image.load(self.rook_url), self.square_size)))
         number_holder = 1
         for i in range(2):
-            self.pawns.append(Piece("Ryttare", [number_holder,self.rest_position], pg.transform.scale(pg.image.load(self.knight_url), self.square_size)))
+            self.pawns.append(piece.Piece("Ryttare", [number_holder,self.rest_position], pg.transform.scale(pg.image.load(self.knight_url), self.square_size)))
             number_holder = 6
         number_holder = 2
         for i in range(2):
-            self.pawns.append(Piece("Biskop", [number_holder, self.rest_position], pg.transform.scale(pg.image.load(self.bishop_url), self.square_size)))
+            self.pawns.append(piece.Piece("Biskop", [number_holder, self.rest_position], pg.transform.scale(pg.image.load(self.bishop_url), self.square_size)))
             number_holder = 5
-        self.pawns.append(Piece("Kung", [3, self.rest_position], pg.transform.scale(pg.image.load(self.king_url), self.square_size)))
-        self.pawns.append(Piece("Drottning", [4, self.rest_position], pg.transform.scale(pg.image.load(self.queen_url), self.square_size)))        
+        self.pawns.append(piece.Piece("Kung", [3, self.rest_position], pg.transform.scale(pg.image.load(self.king_url), self.square_size)))
+        self.pawns.append(piece.Piece("Drottning", [4, self.rest_position], pg.transform.scale(pg.image.load(self.queen_url), self.square_size)))        
 
     def get_grid_pos(self, number):
         return self.pawns[number].grid_position

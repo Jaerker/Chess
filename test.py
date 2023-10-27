@@ -1,4 +1,4 @@
-from piece import Piece
+from board import Piece
 
 
 test_piece = Piece("bonde", (0,0), "surface")
